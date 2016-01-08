@@ -1,0 +1,15 @@
+{
+  "name": "skyway",
+  "version": "1.0.0",
+  "description": "GraphQL as API Gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Thompson",
+  "license": "ISC",
+  "dependencies": {
+    "express-graphql": "^0.4.5",
+    "graphql": "^0.4.14"
+  }
+}
