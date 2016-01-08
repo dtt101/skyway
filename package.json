@@ -2,14 +2,25 @@
   "name": "skyway",
   "version": "1.0.0",
   "description": "GraphQL as API Gateway",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "4.2.3"
   },
   "author": "David Thompson",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^1.2.0",
+    "express": "^4.13.3",
     "express-graphql": "^0.4.5",
     "graphql": "^0.4.14"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "eslint": "^1.10.3",
+    "eslint-plugin-babel": "^3.0.0"
   }
 }
