@@ -1,9 +1,9 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
-import { schema } from './schema';
+import { skySchema } from './skySchema';
 
 const app = express();
 
-app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
+app.use('/graphql', graphqlHTTP({ schema: skySchema, graphiql: true }));
 
 export default app;
