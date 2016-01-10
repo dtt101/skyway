@@ -1,7 +1,9 @@
+import request from 'request';
 // Example router query
 // query RouterQuery {
 //   router(id: "2") {
 //     id
+//     serialNumber
 //     microfilter
 //   }
 // }
@@ -63,9 +65,17 @@ export function getRouter(id) {
   return routerData[id];
 }
 
-export function getMicrofilter(router) {
-  if (router.model === 'SR-202') {
-    return true;
-  }
-  return false;
+export function getMicrofilter() {
+  return new Promise((resolve, reject) => {
+    request(
+      'https://test-hodor.herokuapp.com/api/router/mmf',
+      (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+          let result = JSON.parse(body);
+          resolve(result.mmf === true);
+        } else {
+          reject(false);
+        }
+      });
+  });
 }
