@@ -40,12 +40,14 @@ let customerData = {
 
 let typeOneRouter = {
   id: 1,
-  microfilter: true
+  model: 'SR-101',
+  serialNumber: '12345'
 };
 
 let typeTwoRouter = {
   id: 2,
-  microfilter: false
+  model: 'SR-202',
+  serialNumber: '54321'
 };
 
 let routerData = {
@@ -59,4 +61,11 @@ export function getCustomer(id) {
 
 export function getRouter(id) {
   return routerData[id];
+}
+
+export function getMicrofilter(router) {
+  if (router.model === 'SR-202') {
+    return true;
+  }
+  return false;
 }

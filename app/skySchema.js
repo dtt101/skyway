@@ -6,7 +6,7 @@ import {
     GraphQLNonNull
 } from 'graphql';
 
-import { getCustomer, getRouter } from './skyData.js';
+import { getCustomer, getRouter, getMicrofilter } from './skyData.js';
 
 let customerType = new GraphQLObjectType({
   name: 'Customer',
@@ -37,7 +37,18 @@ let routerType = new GraphQLObjectType({
     },
     microfilter: {
       type: GraphQLBoolean,
-      description: 'Has a microfilter installed'
+      description: 'Has a microfilter installed',
+      resolve: parent => {
+        return getMicrofilter(parent);
+      }
+    },
+    model: {
+      type: GraphQLString,
+      description: 'The router model'
+    },
+    serialNumber: {
+      type: GraphQLString,
+      description: 'Serial number'
     }
   })
 });
