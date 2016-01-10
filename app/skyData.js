@@ -1,4 +1,4 @@
-import request from 'request';
+import request from 'co-request';
 // Example router query
 // query RouterQuery {
 //   router(id: "2") {
@@ -65,17 +65,12 @@ export function getRouter(id) {
   return routerData[id];
 }
 
-export function getMicrofilter() {
-  return new Promise((resolve, reject) => {
-    request(
-      'https://test-hodor.herokuapp.com/api/router/mmf',
-      (error, response, body) => {
-        if (!error && response.statusCode === 200) {
-          let result = JSON.parse(body);
-          resolve(result.mmf === true);
-        } else {
-          reject(false);
-        }
-      });
-  });
+export function *getMicrofilter() {
+  let mmf = false;
+  let result = yield request('https://test-hodor.herokuapp.com/api/router/mmf');
+  if (result.statusCode === 200) {
+    let body = JSON.parse(result.body);
+    mmf = (body.mmf === true);
+  }
+  return mmf;
 }

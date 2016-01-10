@@ -1,3 +1,4 @@
+import co from 'co';
 import {
     GraphQLSchema,
     GraphQLObjectType,
@@ -6,7 +7,11 @@ import {
     GraphQLNonNull
 } from 'graphql';
 
-import { getCustomer, getRouter, getMicrofilter } from './skyData.js';
+import {
+  getCustomer,
+  getRouter,
+  getMicrofilter
+} from './skyData.js';
 
 let customerType = new GraphQLObjectType({
   name: 'Customer',
@@ -39,7 +44,7 @@ let routerType = new GraphQLObjectType({
       type: GraphQLBoolean,
       description: 'Has a microfilter installed',
       resolve: parent => {
-        return getMicrofilter(parent);
+        return co(getMicrofilter(parent));
       }
     },
     model: {
